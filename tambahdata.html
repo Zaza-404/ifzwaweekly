@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Mahasiswa</title>
+</head>
+<body>
+    <h2>Tambah Data Mahasiswa</h2>
+    <form action="mahasiswa.html" method="post">
+        <table cellpadding="5px">
+            <tr>
+                <td><label for="Nama">Nama </label></td>
+                <td>:</td>
+                <td><input type="text" id="Nama" name="Nama"/></td>
+            </tr>
+            <tr>
+                <td><label for="Foto">Foto </label></td>
+                <td>:</td>
+                <td><input type="file" id="Foto" name="Foto"/></td>
+            </tr>
+            <tr>
+                <td><label for="UTS">UTS </label></td>
+                <td>:</td>
+                <td><input type="number" id="UTS" name="UTS"/></td>
+            </tr>
+            <tr>
+                <td><label for="UAS">UAS </label></td>
+                <td>:</td>
+                <td><input type="number" id="UAS" name="UAS"/></td>
+            </tr>
+            <tr>
+                <td><label for="Tugas">Tugas </label></td>
+                <td>:</td>
+                <td><input type="number" id="Tugas" name="Tugas"/></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="submit"> Tambah </button></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <hr>
+    <h2>Form Registrasi Mahasiswa</h2>
+    <form action="#" method="post">
+        <table cellpadding="5px">
+            <tr>
+                <td><label for="nama">Nama </label></td>
+                <td>:</td>
+                <td><input type="text" id="nama" name="nama"/></td>
+            </tr>
+            <tr>
+                <td><label for="nim">NIM </label></td>
+                <td>:</td>
+                <td><input type="number" id="nim" name="nim"/></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password </label></td>
+                <td>:</td>
+                <td><input type="password" id="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email </label></td>
+                <td>:</td>
+                <td><input type="email" id="email" name="email"/></td>
+            </tr>
+            <tr>
+                <td><label for="nohp">No HP </label></td>
+                <td>:</td>
+                <td><input type="tel" id="nohp" name="nohp"/></td>
+            </tr>
+            <tr>
+                <td><label for="website">Website Pribadi </label></td>
+                <td>:</td>
+                <td><input type="url" id="website" name="website"/></td>
+            </tr>
+            <tr>
+                <td><label for="tanggallahir">Tanggal Lahir </label></td>
+                <td>:</td>
+                <td><input type="date" id="tanggallahir" name="tanggallahir"/></td>
+            </tr>
+            <tr>
+                <td><label for="warna">Warna Favorit </label></td>
+                <td>:</td>
+                <td><input type="color" id="warna" name="warna"/></td>
+            </tr>
+            <tr>
+                <td><label for="kepuasan">Tingkat Kepuasan </label></td>
+                <td>:</td>
+                <td><input type="range" id="kepuasan" name="kepuasan" min="0" max="100"/></td>
+            </tr>
+            <tr>
+                <td><label>Jenis Kelamin </label></td>
+                <td>:</td>
+                <td>
+                    <input type="radio" id="laki" name="jeniskelamin" value="Laki-laki"/>
+                    <label for="laki">Laki-laki</label>
+                    <input type="radio" id="perempuan" name="jeniskelamin" value="Perempuan"/>
+                    <label for="perempuan">Perempuan</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Hobi </label></td>
+                <td>:</td>
+                <td>
+                    <input type="checkbox" id="membaca" name="hobi" value="Membaca"/>
+                    <label for="membaca">Membaca</label><br>
+                    <input type="checkbox" id="olahraga" name="hobi" value="Olahraga"/>
+                    <label for="olahraga">Olahraga</label><br>
+                    <input type="checkbox" id="musik" name="hobi" value="Musik"/>
+                    <label for="musik">Musik</label><br>
+                    <input type="checkbox" id="gaming" name="hobi" value="Gaming"/>
+                    <label for="gaming">Gaming</label><br>
+                    <input type="checkbox" id="traveling" name="hobi" value="Traveling"/>
+                    <label for="traveling">Traveling</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="foto">Upload Foto </label></td>
+                <td>:</td>
+                <td><input type="file" id="foto" name="foto"/></td>
+            </tr>
+            <tr>
+                <td><label for="alamat">Alamat </label></td>
+                <td>:</td>
+                <td><textarea id="alamat" name="alamat" rows="4" cols="30"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="jurusan">Jurusan </label></td>
+                <td>:</td>
+                <td>
+                    <select id="jurusan" name="jurusan">
+                        <option value="">-- Pilih Jurusan --</option>
+                        <option value="Teknik Informatika">Teknik Informatika</option>
+                        <option value="Sistem Informasi">Sistem Informasi</option>
+                        <option value="Manajemen Informatika">Manajemen Informatika</option>
+                        <option value="Komputer Akuntansi">Komputer Akuntansi</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
