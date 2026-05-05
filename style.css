@@ -1,0 +1,268 @@
+/* Calm Blue Theme for Informatika 2026 - Modern, Clean, Academic Style */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(to bottom, #F8FBFF 0%, #E3F2FD 100%);
+  color: #2E5B9E;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #2E5B9E;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+h2, h3 {
+  color: #4A90E2;
+  margin-top: 30px;
+}
+
+a {
+  color: #4A90E2;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+a:hover {
+  color: #7BB2F0;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #A7C7E7, transparent);
+  margin: 30px 0;
+}
+
+/* Navigation Table -> Horizontal Nav Bar */
+body > table:first-of-type {
+  display: flex;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(74, 144, 226, 0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px auto 30px;
+  max-width: 800px;
+}
+
+body > table:first-of-type td {
+  border: none;
+  padding: 0;
+  flex: 1;
+}
+
+body > table:first-of-type td a {
+  display: block;
+  padding: 18px 30px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+body > table:first-of-type td a:hover {
+  background: #A7C7E7;
+  color: #2E5B9E;
+}
+
+/* Content Tables (Data Mahasiswa, Forms) */
+table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 25px auto;
+  background: #FFFFFF;
+  box-shadow: 0 6px 25px rgba(74, 144, 226, 0.12);
+  border-radius: 15px;
+  overflow: hidden;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+th {
+  background: linear-gradient(135deg, #7BB2F0 0%, #4A90E2 100%);
+  color: white;
+  padding: 18px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+td {
+  padding: 18px 20px;
+  border-bottom: 1px solid #E8F4FD;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #F8FCFF;
+}
+
+tbody tr:hover {
+  background: #E3F2FD !important;
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(74, 144, 226, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 35px rgba(74, 144, 226, 0.35);
+}
+
+/* Lists */
+ul {
+  background: #FFFFFF;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin: 20px 0;
+  list-style: none;
+}
+
+ul li {
+  padding: 10px 0;
+  position: relative;
+  padding-left: 30px;
+}
+
+ul li:before {
+  content: '▹';
+  color: #4A90E2;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+ul ul {
+  margin-left: 20px;
+  background: transparent;
+  box-shadow: none;
+  padding: 10px 0;
+}
+
+/* Forms */
+form table {
+  box-shadow: none;
+  background: #F8FBFF;
+  border-radius: 12px;
+  overflow: visible;
+  max-width: 600px;
+}
+
+form td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+label {
+  font-weight: 600;
+  color: #2E5B9E;
+  min-width: 120px;
+  display: inline-block;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #A7C7E7;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 12px rgba(74, 144, 226, 0.3);
+  transform: translateY(-1px);
+}
+
+button {
+  background: linear-gradient(135deg, #4A90E2 0%, #7BB2F0 100%);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  body > table:first-of-type {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  
+  body > table:first-of-type td a {
+    padding: 15px 20px;
+  }
+  
+  table, form table {
+    font-size: 14px;
+    margin: 15px 0;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+  }
+  
+  input, select, textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Specific fixes */
+form table td:last-child {
+  padding-left: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  margin: 15px 0;
+}
+
+@media print {
+  body > table:first-of-type {
+    display: table !important;
+  }
+}
