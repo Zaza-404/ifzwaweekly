@@ -1,30 +1,24 @@
- <?php
- require_once "fungsi.php";
+<?php
+require_once "fungsi.php";
 
- $koneksi = mysqli_connect("localhost", "root", "root", "mahasiswa");
+$host = "localhost";
+$user = "root";
+$password = "root";
+$database = "mahasiswa";
 
- $query = "SELECT * FROM data_mahasiswa ORDER BY id ASC";
- $result = mysqli_query($koneksi, $query);
+$conn = mysqli_connect($host, $user, $password, $database);
 
- /// ambil data (fetch) dari lemari mahasiswa
- // mysqli_fetch_row() -> mengembalikan data dalam bentuk array numerik
- // mysqli_fetch_assoc() -> mengembalikan data dalam bentuk array asosiatif (lebih mudah dibaca)
- // mysqli_fetch_array() -> mengembalikan data dalam bentuk array numerik dan asosiatif
- // mysqli_fetch_object() -> mengembalikan data dalam bentuk objek
-
-
- 
-
- 
- ?>
-
+if (!$conn) {
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mahasiswa | Informatika 2026</title>
+    <title>Trash - Data Mahasiswa | Informatika 2026</title>
     <link rel="stylesheet" href="style.css">
     <style>
         table {
@@ -46,41 +40,42 @@
             object-fit: cover;
             border-radius: 5px;
         }
-        .btn-tambah {
-            display: inline-block;
-            margin: 10px 0;
-            padding: 8px 15px;
+        .btn-restore {
             background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .btn-tambah:hover {
-            background-color: #45a049;
-        }
-        .btn-edit {
-            background-color: #2196F3;
             color: white;
             padding: 5px 10px;
             text-decoration: none;
             border-radius: 3px;
         }
-        .btn-hapus {
+        .btn-permanent-delete {
             background-color: #f44336;
             color: white;
             padding: 5px 10px;
             text-decoration: none;
             border-radius: 3px;
         }
-        .btn-edit:hover, .btn-hapus:hover {
+        .btn-restore:hover, .btn-permanent-delete:hover {
             opacity: 0.8;
         }
-        .error {
-            color: red;
-            background: #ffe6e6;
+        .btn-kembali {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 8px 15px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-kembali:hover {
+            background-color: #0b7dda;
+        }
+        .info-trash {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
             padding: 10px;
             border-radius: 5px;
             margin: 10px 0;
+            color: #856404;
         }
     </style>
 </head>
@@ -100,42 +95,24 @@
     
     <hr/>
 
-    <h2>Data Mahasiswa</h2>
-    <a href="tambahdata.php" class="btn-tambah">+ Tambah Data Mahasiswa</a>
+    <h2>🗑️ Trash - Data Terhapus</h2>
+    <a href="mahasiswa.php" class="btn-kembali">← Kembali ke Data Mahasiswa</a>
+
+    <div class="info-trash">
+        <strong>ℹ️ Info:</strong> Data yang ada di sini adalah data yang telah dihapus. Anda dapat memulihkan atau menghapus secara permanen.
+    </div>
 
     <?php
-    // 🔧 GANTI PASSWORD DI SINI (coba root, atau kosong, atau laragon)
-    $host = "localhost";     // atau "127.0.0.1"
-    $user = "root";
-    $password = "root";      // 🔥 GANTI INI dengan password MySQL-mu
-    $database = "mahasiswa";
-
-    // Koneksi ke database
-    $conn = mysqli_connect($host, $user, $password, $database);
-
-    // Cek koneksi
-    if (!$conn) {
-        echo '<div class="error">';
-        echo "<strong>⚠️ Koneksi database gagal!</strong><br>";
-        echo "Error: " . mysqli_connect_error() . "<br>";
-        echo "Cek password MySQL di Laragon:<br>";
-        echo "1. Buka terminal Laragon<br>";
-        echo "2. Ketik: mysql -u root -p<br>";
-        echo "3. Coba password: root / laragon / (kosong)<br>";
-        echo "</div>";
-        die();
-    }
-
-    // Query ambil data mahasiswa yang belum dihapus
-    $query = "SELECT * FROM data_mahasiswa WHERE deleted_at IS NULL ORDER BY id ASC";
+    // Query ambil data mahasiswa yang sudah dihapus
+    $query = "SELECT * FROM data_mahasiswa WHERE deleted_at IS NOT NULL ORDER BY deleted_at DESC";
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
-        echo '<div class="error">';
+        echo '<div style="color: red; background: #ffe6e6; padding: 10px; border-radius: 5px; margin: 10px 0;">';
         echo "⚠️ Query error: " . mysqli_error($conn);
         echo "</div>";
     } else {
-        // Cek apakah ada data
+        // Cek apakah ada data di trash
         if (mysqli_num_rows($result) > 0) {
             echo '<table border="1" cellpadding="10px">
             <tr>
@@ -146,6 +123,7 @@
                 <th>Email</th>
                 <th>No HP</th>
                 <th>Foto</th>
+                <th>Terhapus Pada</th>
                 <th>Aksi</th>
             </tr>';
 
@@ -166,36 +144,32 @@
                     echo '<br><small>Tidak ada foto</small>';
                 }
                 echo '</td>';
+                echo '<td>' . htmlspecialchars($row['deleted_at']) . '</td>';
                 echo '<td align="center">
-                        <a href="edit.php?id=' . $row['id'] . '" class="btn-edit">Edit</a>
-                        <a href="hapusdata.php?id=' . $row['id'] . '" class="btn-hapus">Hapus</a>
+                        <a href="restore.php?id=' . $row['id'] . '" class="btn-restore" onclick="return confirm(\'Pulihkan data ' . htmlspecialchars($row['nama']) . '?\')">Restore</a>
+                        <a href="permanent-delete.php?id=' . $row['id'] . '" class="btn-permanent-delete" onclick="return confirm(\'Hapus permanen data ' . htmlspecialchars($row['nama']) . '? Tidak bisa dipulihkan lagi!\')">Hapus</a>
                        </td>';
                 echo '</tr>';
             }
             echo '</table>';
         } else {
-            echo '<p style="color: red; margin-top: 20px;">⚠️ Belum ada data mahasiswa. Silakan tambah data terlebih dahulu.</p>';
+            echo '<p style="color: green; margin-top: 20px; font-size: 18px;">✅ Trash kosong. Tidak ada data yang dihapus.</p>';
         }
     }
 
-    // Tutup koneksi
-    mysqli_close($conn);
-    ?>
-
-    <hr/>
-    
-    <?php
-    // Hitung total mahasiswa yang belum dihapus
+    // Hitung data di trash
     $conn2 = mysqli_connect($host, $user, $password, $database);
     if ($conn2) {
-        $countQuery = "SELECT COUNT(*) as total FROM data_mahasiswa WHERE deleted_at IS NULL";
+        $countQuery = "SELECT COUNT(*) as total FROM data_mahasiswa WHERE deleted_at IS NOT NULL";
         $countResult = mysqli_query($conn2, $countQuery);
         if ($countResult) {
             $total = mysqli_fetch_assoc($countResult);
-            echo '<p><small>Total mahasiswa: ' . $total['total'] . '</small></p>';
+            echo '<p><small>Total data di trash: ' . $total['total'] . '</small></p>';
         }
         mysqli_close($conn2);
     }
+
+    mysqli_close($conn);
     ?>
 </body>
 </html>
